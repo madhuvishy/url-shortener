@@ -2,6 +2,6 @@
   (:require [ring.adapter.jetty :refer :all]
             [url-shortener.server :as server]))
 
-(defn -main
-  [& args]
-  (run-jetty #'server/app {:port 8000}))
+(defn -main [port]
+  (let [port (Integer. port)]
+    (run-jetty server/app {:port port :join? false})))
